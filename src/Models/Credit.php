@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Number;
 
-class Balance extends Model
+class Credit extends Model
 {
     protected $guarded = [];
 
@@ -16,7 +16,7 @@ class Balance extends Model
         parent::__construct($attributes);
 
         $this->guarded[] = $this->primaryKey;
-        $this->table = config('balance.table');
+        $this->table = config('credits.table');
     }
 
     protected function amountCurrency(): Attribute
@@ -26,7 +26,7 @@ class Balance extends Model
         );
     }
 
-    public function balanceable(): MorphTo
+    public function creditable(): MorphTo
     {
         return $this->morphTo();
     }

@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('balances', function (Blueprint $table) {
+        Schema::create('credits', function (Blueprint $table) {
             $table->id();
             $table->morphs('balanceable');
             $table->integer('amount');

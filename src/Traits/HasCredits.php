@@ -2,24 +2,24 @@
 
 namespace Geow\Balance\Traits;
 
-use Geow\Balance\Models\Balance;
+use Geow\Balance\Models\Credit;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Number;
 
-trait HasBalance
+trait hasCredits
 {
     protected string $currency;
 
     public function __construct()
     {
-        $this->currency = config('balance.default_currency', 'USD');
+        $this->currency = config('credit.default_currency', 'USD');
     }
 
     public function credits(): MorphMany
     {
-        return $this->morphMany(Balance::class, 'balanceable');
+        return $this->morphMany(Credit::class, 'creditable');
     }
 
     public function withCurrency(string $currency): self

@@ -10,8 +10,8 @@ class BalanceServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-balance')
+            ->name('laravel-credits')
             ->hasConfigFile()
-            ->hasMigration('create_balances_table');
+            ->hasMigration('create_credits_table');
     }
 }
