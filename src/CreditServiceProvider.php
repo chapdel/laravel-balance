@@ -1,16 +1,16 @@
 <?php
 
-namespace Geow\Balance;
+namespace Chapdel\Credit;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class BalanceServiceProvider extends PackageServiceProvider
+class CreditServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-credits')
+            ->name('credits')
             ->hasConfigFile()
             ->hasMigration('create_credits_table');
     }

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('credits', function (Blueprint $table) {
             $table->id();
-            $table->morphs('balanceable');
+            $table->morphs('creditable');
             $table->integer('amount');
             $table->text('reason')->nullable();
             $table->timestamps();
