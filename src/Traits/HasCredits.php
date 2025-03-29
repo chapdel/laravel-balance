@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Number;
 
-trait hasCredits
+trait HasCredits
 {
     protected string $currency;
 
