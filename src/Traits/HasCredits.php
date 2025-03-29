@@ -1,8 +1,8 @@
 <?php
 
-namespace Geow\Balance\Traits;
+namespace Chapdel\Credit\Traits;
 
-use Geow\Balance\Models\Credit;
+use Chapdel\Credit\Models\Credit;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
@@ -14,7 +14,7 @@ trait HasCredits
 
     public function __construct()
     {
-        $this->currency = config('credit.default_currency', 'USD');
+        $this->currency = config('credits.default_currency', 'XAF');
     }
 
     public function credits(): MorphMany
@@ -32,29 +32,25 @@ trait HasCredits
 
     protected function credit(): Attribute
     {
+
+        $credits = $this->credits()->sum('amount');
+
         return Attribute::make(
-            get: fn () => $this->credits()->sum('amount'),
+            get: fn () => $credits > 0 ? $credits / 100 : 0,
         );
     }
 
-    protected function creditCurrency(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => Number::currency($this->credits()->sum('amount') / 100, $this->currency, App::getLocale()),
-        );
-    }
-
-    public function increaseCredit(int $amount, ?string $reason = null): Balance
+    public function increaseCredit(int $amount, ?string $reason = null): Credit
     {
         return $this->createCredit($amount, $reason);
     }
 
-    public function decreaseCredit(int $amount, ?string $reason = null): Balance
+    public function decreaseCredit(int $amount, ?string $reason = null): Credit
     {
         return $this->createCredit(-1 * abs($amount), $reason);
     }
 
-    public function setCredit(int $amount, ?string $reason = null): Balance
+    public function setCredit(int $amount, ?string $reason = null):Credit
     {
         return $this->createCredit($amount, $reason);
     }
@@ -69,7 +65,7 @@ trait HasCredits
         return $this->credit > 0;
     }
 
-    protected function createCredit(int $amount, ?string $reason = null): Balance
+    protected function createCredit(int $amount, ?string $reason = null): Credit
     {
         return $this->credits()->create([
             'amount' => $amount,

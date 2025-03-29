@@ -6,7 +6,7 @@
         "laravel",
         "credit-system"
     ],
-    "homepage": "https://github.com/geowrgetudor/laravel-balance",
+    "homepage": "https://github.com/chapdel/credits",
     "license": "MIT",
     "authors": [
         {
@@ -22,20 +22,20 @@
     },
     "autoload": {
         "psr-4": {
-            "Geow\\Balance\\": "src/",
-            "Geow\\Balance\\Database\\Factories\\": "database/factories/"
+            "Chapdel\\Credit\\": "src/",
+            "Chapdel\\Credit\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Geow\\Balance\\Tests\\": "tests/",
+            "Chapdel\\Credit\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Geow\\Balance\\BalanceServiceProvider"
+                "Chapdel\\Credit\\CreditServiceProvider"
             ]
         }
     },
